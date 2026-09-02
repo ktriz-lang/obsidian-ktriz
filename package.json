@@ -1,0 +1,34 @@
+{
+  "name": "obsidian-ktriz",
+  "version": "0.1.0",
+  "description": "Obsidian Community Plugin for kTRIZ diagram rendering",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+    "typecheck": "tsc -noEmit -skipLibCheck",
+    "verify:pure": "node scripts/verify-pure.mjs",
+    "verify:dom": "node scripts/verify-dom.mjs",
+    "verify:cli": "node scripts/verify-cli.mjs",
+    "test": "npm run typecheck && npm run verify:pure && npm run verify:dom"
+  },
+  "keywords": [
+    "obsidian",
+    "triz",
+    "ktriz",
+    "diagrams",
+    "innovation"
+  ],
+  "author": "Irakli Betchvaia",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "esbuild": "0.28.2",
+    "jsdom": "^30.0.1",
+    "obsidian": "1.13.1",
+    "typescript": "^5.4.5"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

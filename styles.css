@@ -1,0 +1,114 @@
+.ktriz-diagram {
+  display: flex;
+  justify-content: center;
+  padding: 1em 0;
+  overflow-x: auto;
+}
+
+.ktriz-diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Applied via classList.add() in main.ts. The renderer-supplied SVG has its
+   width/height attributes stripped; this class restores responsive
+   block-level sizing. Kept separate from `.ktriz-diagram svg` so any SVG
+   not routed through the DOMParser pipeline is unaffected. */
+.ktriz-diagram-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Loading placeholder ──────────────────────────────────────────────────── */
+
+.ktriz-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6em;
+  padding: 2em 1em;
+  color: var(--text-muted);
+}
+
+.ktriz-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--background-modifier-border);
+  border-top-color: var(--interactive-accent);
+  border-radius: 50%;
+  animation: ktriz-spin 0.8s linear infinite;
+}
+
+@keyframes ktriz-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ktriz-loading-text {
+  font-size: 0.85em;
+  font-style: italic;
+}
+
+/* ── Error display ────────────────────────────────────────────────────────── */
+
+.ktriz-error {
+  background-color: var(--background-modifier-error);
+  border-left: 4px solid var(--color-red);
+  padding: 0.75em 1em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.ktriz-error strong {
+  display: block;
+  margin-bottom: 0.4em;
+  color: var(--color-red);
+}
+
+.ktriz-error ul {
+  margin: 0.3em 0 0;
+  padding-left: 1.2em;
+}
+
+.ktriz-error li {
+  font-family: var(--font-monospace);
+  font-size: 0.85em;
+}
+
+.ktriz-error-code {
+  display: block;
+  margin-top: 0.5em;
+  font-size: 0.75em;
+  color: var(--text-faint);
+}
+
+/* ── Click-to-zoom / Lightbox ─────────────────────────────────────────────── */
+
+.ktriz-diagram--zoomable {
+  cursor: zoom-in;
+}
+
+.ktriz-zoom-modal.modal {
+  width: min(92vw, 1800px);
+  max-width: min(92vw, 1800px);
+}
+
+.ktriz-zoom-content {
+  overflow: auto;
+  padding: 0.5em;
+  display: flex;
+  justify-content: center;
+}
+
+.ktriz-zoom-content svg {
+  width: 100%;
+  height: auto;
+  max-height: 85vh;
+  display: block;
+}
+
+/* ── Settings ─────────────────────────────────────────────────────────────── */
+
+.ktriz-security-note {
+  color: var(--text-muted);
+}

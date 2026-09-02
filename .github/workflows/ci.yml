@@ -1,0 +1,40 @@
+name: CI
+
+# Runs on every push and pull request against master — release.yml only
+# triggers on version tags, so without this, `main.js` could ship a type
+# error or a broken sanitisation code path with nothing having checked it
+# since the last tag. `npm test` here is the CI-safe subset (typecheck +
+# the pure-logic and jsdom-backed suites): it deliberately excludes
+# verify:cli, which needs a real ktriz CLI binary this runner doesn't have.
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Typecheck and test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
+
+      - name: Typecheck + verify:pure + verify:dom
+        run: npm test

@@ -1,0 +1,10 @@
+{
+  "id": "ktriz",
+  "name": "kTRIZ Diagrams",
+  "version": "0.1.0",
+  "minAppVersion": "1.5.3",
+  "description": "Render kTRIZ function models and Su-Field diagrams from ktriz code blocks as inline SVG.",
+  "author": "Irakli Betchvaia",
+  "authorUrl": "https://ktriz.dev",
+  "isDesktopOnly": true
+}
