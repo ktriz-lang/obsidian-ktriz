@@ -25,9 +25,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Node 20 (this repo's original default) fails verify:dom here: jsdom's
+      # undici dependency throws "webidl.util.markAsUncloneable is not a
+      # function" while importing jsdom's Cache/CacheStorage shim on some
+      # Node 20.x builds. Node 22 (matching local dev) does not hit this.
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Install dependencies

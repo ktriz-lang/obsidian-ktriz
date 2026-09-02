@@ -22,9 +22,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Matches ci.yml's Node version -- see that workflow for why 20 doesn't
+      # work here (a jsdom/undici incompatibility hit by npm test, not by
+      # the plain `npm run build` this workflow runs, but kept in sync
+      # rather than letting the two workflows drift onto different Node
+      # versions for no reason).
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Install dependencies
