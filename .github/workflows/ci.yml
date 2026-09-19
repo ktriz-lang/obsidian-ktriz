@@ -37,8 +37,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # `npm audit` no longer works on the runner (the registry retired its
+      # legacy audit endpoint: HTTP 400 "Invalid package tree"). The OSV script
+      # queries osv.dev instead; unlike `--audit-level=high` it has no severity
+      # threshold, so any known advisory fails the build. Exit code 2 (the check
+      # itself failed) also fails the build — never treated as green.
       - name: Audit dependencies
-        run: npm audit --audit-level=high
+        run: npm run audit:osv
 
       - name: Typecheck + verify:pure + verify:dom
         run: npm test
