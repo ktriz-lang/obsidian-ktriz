@@ -10,7 +10,8 @@
     "verify:pure": "node scripts/verify-pure.mjs",
     "verify:dom": "node scripts/verify-dom.mjs",
     "verify:cli": "node scripts/verify-cli.mjs",
-    "test": "npm run typecheck && npm run verify:pure && npm run verify:dom"
+    "test": "npm run typecheck && npm run verify:pure && npm run verify:dom",
+    "audit:osv": "node scripts/osv-audit.mjs"
   },
   "keywords": [
     "obsidian",
